@@ -1,3 +1,10 @@
+import player.CardSlot;
+import player.Deck;
+import player.Player;
+import player.playingCard.CardValue;
+import player.playingCard.PlayingCard;
+import player.playingCard.Suit;
+
 public class TestApp
 {
     public static void main(String[] args)
@@ -14,6 +21,8 @@ public class TestApp
         stackCardSlotTest();
         unstackCardSlotTest();
         cardIsHiddenTest();
+        makePlayerWithDeckTest();
+        makePlayerWithSlotsTest();
     }
     
     private static void createDeckTest(){
@@ -209,7 +218,7 @@ public class TestApp
     }
     
     private static void cardIsHiddenTest(){
-        CardSlot slot = new CardSlot(true);
+        CardSlot slot = new CardSlot(new Deck());
         
         //System.out.println(slot);
         
@@ -217,6 +226,27 @@ public class TestApp
             System.out.println("cardIsHiddenTest: passed");
         } else {
             System.out.println("cardIsHiddenTest: failed");
+        }
+    }
+
+    private static void makePlayerWithDeckTest(){
+        Player player = new Player(2, new Deck(Suit.SPADES, Suit.CLUBS));
+
+        if(!player.getDeck().equals(null)){
+            System.out.println("makePlayerWithDeckTest: passed");
+        } else {
+            System.out.println("makePlayerTest: failed");
+        }
+    }
+
+    private static void makePlayerWithSlotsTest(){
+        Player player = new Player(3, new Deck(Suit.HEARTS));
+        ///player.fillSlot(0);
+
+        if (!player.getSlots()[0].equals(null)) {
+            System.out.println("makePlayerWithDeckTest: passed");
+        } else {
+            System.out.println("makePlayerWithDeckTest: failed");
         }
     }
 }

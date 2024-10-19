@@ -1,3 +1,7 @@
+package player;
+
+import player.playingCard.PlayingCard;
+
 public class CardSlot {
     private PlayingCard base;
     private PlayingCard stack;
@@ -9,9 +13,8 @@ public class CardSlot {
         
     }
     
-    public CardSlot(boolean useRandomCard){
-        if(useRandomCard){
-            Deck deck = new Deck();
+    public CardSlot(Deck deck){
+        if(!deck.equals(null)){
             deck.shuffleCards();
             this.base = deck.draw();
         }

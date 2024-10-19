@@ -1,3 +1,4 @@
+package player.playingCard;
 public enum CardValue {
     
     ACE(11),

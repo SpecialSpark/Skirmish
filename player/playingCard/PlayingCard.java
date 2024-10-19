@@ -1,7 +1,11 @@
+
+package player.playingCard;
+
 public class PlayingCard {
-    
+
     private CardValue cardVal;
     private Suit suit;
+    
     
     public PlayingCard(CardValue cardVal, Suit suit){
         this.cardVal = cardVal;
