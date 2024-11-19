@@ -1,8 +1,15 @@
+package player;
 import java.util.ArrayList;
+import java.util.Iterator;
+
+import player.playingCard.CardValue;
+import player.playingCard.PlayingCard;
+import player.playingCard.Suit;
 
 public class Deck {
     
     private ArrayList<PlayingCard> cardList = new ArrayList<PlayingCard>();
+
 
     public Deck(){
         for(Suit suit: Suit.values()){
@@ -37,12 +44,12 @@ public class Deck {
     
     public void shuffleCards(){
         ArrayList<PlayingCard> shuffleList = new ArrayList<PlayingCard>();
-        ArrayList<Integer> used = new ArrayList<Integer>();
+        Iterator<PlayingCard> iter = cardList.iterator();
         int num = 0;
         
-        while(this.cardList.size() > 0){
-            shuffleList.add(this.cardList.get(0));
-            this.cardList.remove(0);
+        while(iter.hasNext()){
+            shuffleList.add(iter.next());
+            iter.remove();
         }
         
         while(shuffleList.size() > 0){
@@ -64,8 +71,9 @@ public class Deck {
     @Override
     public String toString(){
         String str = "";
-        for(PlayingCard card : this.cardList){
-            str = str + card + " ";
+        Iterator<PlayingCard> iter = cardList.iterator();
+        while(iter.hasNext()){
+            str = str + iter.next() + " ";
         }
         return str;
     } 

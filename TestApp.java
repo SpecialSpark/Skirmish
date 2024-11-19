@@ -1,3 +1,10 @@
+import player.CardSlot;
+import player.Deck;
+import player.Player;
+import player.playingCard.CardValue;
+import player.playingCard.PlayingCard;
+import player.playingCard.Suit;
+
 public class TestApp
 {
     public static void main(String[] args)
@@ -14,6 +21,11 @@ public class TestApp
         stackCardSlotTest();
         unstackCardSlotTest();
         cardIsHiddenTest();
+        makePlayerWithDeckTest();
+        makePlayerWithSlotsTest();
+        makePlayerFillSlotTest();
+        makePlayerWithDiscardTest();
+        //makeBoard();
     }
     
     private static void createDeckTest(){
@@ -199,7 +211,7 @@ public class TestApp
         //System.out.print(slot);
         //System.out.println("\n[discarded : " + cardUnstacked + "]");
         
-        if(slot.getPower() > 4 && cardStacked && cardUnstacked != null){
+        if((slot.getPower() > 4 && cardStacked) && cardUnstacked != null){
             System.out.println("unstackCardSlotTest: passed");
         }
         else
@@ -209,7 +221,7 @@ public class TestApp
     }
     
     private static void cardIsHiddenTest(){
-        CardSlot slot = new CardSlot(true);
+        CardSlot slot = new CardSlot(new Deck());
         
         //System.out.println(slot);
         
@@ -219,4 +231,58 @@ public class TestApp
             System.out.println("cardIsHiddenTest: failed");
         }
     }
+
+    private static void makePlayerWithDeckTest(){
+        Player player = new Player(2, new Deck(Suit.SPADES, Suit.CLUBS));
+
+        if(!player.getDeck().equals(null)){
+            System.out.println("makePlayerWithDeckTest: passed");
+        } else {
+            System.out.println("makePlayerDeckTest: failed");
+        }
+    }
+
+    private static void makePlayerWithSlotsTest(){
+        Player player = new Player(new Deck(Suit.SPADES));
+        ///player.fillSlot(0);
+
+        if (player.getSlots()[0] != null) {
+            System.out.println("makePlayerWithSlotsTest: passed");
+        } else {
+            System.out.println("makePlayerWithSlotsTest: failed");
+        }
+    }
+
+    public static void makePlayerFillSlotTest(){
+        Player player = new Player(new Deck(Suit.SPADES));
+        player.fillSlot(0);
+
+        if(player.getSlots()[0].getBase() != null){
+            System.out.println("makePlayerFillSlotTest: passed");
+        } else {
+            System.out.println("makePlayerFillSlotTest: failed");
+        }
+    }
+
+    public static void makePlayerWithDiscardTest() {
+        Player player = new Player(new Deck(Suit.SPADES));
+        player.fillSlot(0);
+        player.discardSlot(0);
+        
+        if(player.getSlots()[0].getBase() == null){
+            System.out.println("makePlayerWithDiscardTest: passed");
+        } else {
+            System.out.println("makePlayerWithDiscardTest: failed");
+        }
+    }
+
+    /*private static void makeBoard(){
+        Board board = new Board();
+        
+        if(board.getPlayers()[0].shu){
+            System.out.println("makeBoardTest: passed");
+        } else {
+            System.out.println("makeBoardTest: failed");
+        }
+    }*/
 }
