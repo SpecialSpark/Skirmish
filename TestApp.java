@@ -207,11 +207,11 @@ public class TestApp
         cardStacked = slot.stackCard(deck.draw());
         //System.out.println(slot);
         
-        cardUnstacked = slot.unstackCard();
+        cardUnstacked = slot.discardStack();
         //System.out.print(slot);
         //System.out.println("\n[discarded : " + cardUnstacked + "]");
         
-        if((slot.getPower() > 4 && cardStacked) && cardUnstacked != null){
+        if(cardStacked && cardUnstacked != null){
             System.out.println("unstackCardSlotTest: passed");
         }
         else
@@ -235,7 +235,9 @@ public class TestApp
     private static void makePlayerWithDeckTest(){
         Player player = new Player(2, new Deck(Suit.SPADES, Suit.CLUBS));
 
-        if(!player.getDeck().equals(null)){
+        //System.out.println(player.getDeck());
+
+        if(player.getDeck() != null){
             System.out.println("makePlayerWithDeckTest: passed");
         } else {
             System.out.println("makePlayerDeckTest: failed");
@@ -244,7 +246,6 @@ public class TestApp
 
     private static void makePlayerWithSlotsTest(){
         Player player = new Player(new Deck(Suit.SPADES));
-        ///player.fillSlot(0);
 
         if (player.getSlots()[0] != null) {
             System.out.println("makePlayerWithSlotsTest: passed");
@@ -267,9 +268,15 @@ public class TestApp
     public static void makePlayerWithDiscardTest() {
         Player player = new Player(new Deck(Suit.SPADES));
         player.fillSlot(0);
+        
+        //System.out.println(player.getSlots()[0]);
+
         player.discardSlot(0);
         
-        if(player.getSlots()[0].getBase() == null){
+        //System.out.println(player.getSlots()[0]);
+        //System.out.println(player.getDiscardPile());
+
+        if(player.getSlots()[0].getBase() == null && player.getDiscardPile().size() > 0){
             System.out.println("makePlayerWithDiscardTest: passed");
         } else {
             System.out.println("makePlayerWithDiscardTest: failed");

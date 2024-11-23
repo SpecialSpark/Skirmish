@@ -27,6 +27,8 @@ public class CardSlot {
             if(stack != null){
                 this.power += this.stack.getCardValue().getPower();
             }
+        } else {
+            this.power = 0;
         }
     }
     
@@ -42,11 +44,22 @@ public class CardSlot {
         
         return success;
     }
+
+    public PlayingCard discardBase(){
+        PlayingCard card = this.base;
+
+        if(card != null){
+            this.base = null;
+            this.updatePower();
+        }
+
+        return card;
+    }
     
-    public PlayingCard unstackCard(){
+    public PlayingCard discardStack(){
         PlayingCard card = this.stack;
         
-        if(this.stack != null){
+        if(card != null){
             this.stack = null;
             this.updatePower();
         }
@@ -54,6 +67,7 @@ public class CardSlot {
     }
     
     public int getPower(){
+        this.updatePower();
         return power;
     }
     
