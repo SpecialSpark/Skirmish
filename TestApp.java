@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+
+import game.Board;
 import player.CardSlot;
 import player.Deck;
 import player.Player;
@@ -25,7 +28,9 @@ public class TestApp
         makePlayerWithSlotsTest();
         makePlayerFillSlotTest();
         makePlayerWithDiscardTest();
-        //makeBoard();
+        deckIsArrayListTest();
+        makeBoardTest();
+        makePopulatedBoardTest();
     }
     
     private static void createDeckTest(){
@@ -33,7 +38,7 @@ public class TestApp
 
         //System.out.println(deck);
         
-        if(deck.getCardList().size() > 0){
+        if(deck.size() > 0){
             System.out.println("createDeckTest: passed");
         }
         else
@@ -72,13 +77,13 @@ public class TestApp
 
         //System.out.println(deck);
 
-        for(PlayingCard card : deck.getCardList()){
+        for(PlayingCard card : deck){
             if(!(card.getSuit().equals(Suit.SPADES) || card.getSuit().equals(Suit.CLUBS))){
                 allBlack = false;
             }
         }
         
-        if(deck.getCardList().size() > 0 && allBlack){
+        if(deck.size() > 0 && allBlack){
             
             System.out.println("deckOfBlackCardsTest: passed");
         } else {
@@ -92,13 +97,13 @@ public class TestApp
         Deck deck = new Deck(CardValue.KING, CardValue.QUEEN, CardValue.JACK);
         
         //System.out.println(deck);
-        for(PlayingCard card : deck.getCardList()){
+        for(PlayingCard card : deck){
             if(!(card.getCardValue().getPower() == 10)){
                 allFaces = false;
             }
         }
         
-        if(deck.getCardList().size() > 0 && allFaces){
+        if(deck.size() > 0 && allFaces){
             System.out.println("addDeckOfFacesTest: passed");
         } else {
             System.out.println("addDeckOfFacesTest: failed");
@@ -123,7 +128,7 @@ public class TestApp
         str = "" + deck.toString();
         deck.shuffleCards();
         
-        for(PlayingCard card: deck.getCardList()){
+        for(PlayingCard card: deck){
             if((str.indexOf(card.toString()) < 0)){
                 allSame = false;
             }
@@ -141,7 +146,7 @@ public class TestApp
     private static void drawCardTest(){
         boolean cardDrawn = true;
         Deck deck = new Deck(Suit.SPADES);
-        int initialSize = deck.getCardList().size();
+        int initialSize = deck.size();
         
         deck.shuffleCards();
         PlayingCard card = deck.draw();
@@ -152,7 +157,7 @@ public class TestApp
         
         //System.out.println(card + "\n \n" + deck);
         
-        if(deck.getCardList().size() < initialSize && cardDrawn && !(card.equals(null))){
+        if(deck.size() < initialSize && cardDrawn && !(card.equals(null))){
             System.out.println("drawCardTest: passed");
         } else {
             System.out.println("drawCardTest: failed");
@@ -283,13 +288,31 @@ public class TestApp
         }
     }
 
-    /*private static void makeBoard(){
-        Board board = new Board();
+    private static void deckIsArrayListTest(){
+        Deck deck = new Deck(Suit.SPADES);
+        if(deck instanceof ArrayList<PlayingCard>){
+            System.out.println("deckIsArrayListTest: passed");
+        } else {
+            System.out.println("deckIsArrayListTest: failed");
+        }
+    }
+
+    private static void makeBoardTest(){
+        Board board = Board.getInstance();
         
-        if(board.getPlayers()[0].shu){
+        if(board != null){
             System.out.println("makeBoardTest: passed");
         } else {
             System.out.println("makeBoardTest: failed");
         }
-    }*/
+    }
+
+    private static void makePopulatedBoardTest(){
+        Board board = Board.getInstance();
+        if(!board.getPlayers()[0].getDeck().isEmpty() && !board.getPlayers()[1].getDeck().isEmpty()){
+            System.out.println("makePopulatedBoardTest: passed");
+        } else {
+            System.out.println("makePopulatedBoardTest: failed");
+        }
+    }
 }
