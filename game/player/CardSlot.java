@@ -1,6 +1,6 @@
-package player;
+package game.player;
 
-import player.playingCard.PlayingCard;
+import game.player.playingCard.PlayingCard;
 
 public class CardSlot {
     private PlayingCard base;

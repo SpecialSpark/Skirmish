@@ -1,9 +1,10 @@
 package game;
 
-import player.Player;
+import game.player.Player;
 
 public class Board {
     private Player[] players;
+
 
     private static Board instance;
     

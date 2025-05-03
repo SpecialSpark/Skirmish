@@ -1,12 +1,12 @@
 import java.util.ArrayList;
 
 import game.Board;
-import player.CardSlot;
-import player.Deck;
-import player.Player;
-import player.playingCard.CardValue;
-import player.playingCard.PlayingCard;
-import player.playingCard.Suit;
+import game.player.CardSlot;
+import game.player.Deck;
+import game.player.Player;
+import game.player.playingCard.CardValue;
+import game.player.playingCard.PlayingCard;
+import game.player.playingCard.Suit;
 
 public class TestApp
 {

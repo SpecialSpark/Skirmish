@@ -1,5 +1,5 @@
 
-package player.playingCard;
+package game.player.playingCard;
 
 public class PlayingCard {
 

@@ -1,8 +1,8 @@
-package player;
+package game.player;
 
 import java.util.ArrayList;
 
-import player.playingCard.PlayingCard;
+import game.player.playingCard.PlayingCard;
 
 public class Player {
     private CardSlot[] slots;

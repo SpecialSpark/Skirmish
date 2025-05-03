@@ -1,10 +1,10 @@
-package player;
+package game.player;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import player.playingCard.CardValue;
-import player.playingCard.PlayingCard;
-import player.playingCard.Suit;
+import game.player.playingCard.CardValue;
+import game.player.playingCard.PlayingCard;
+import game.player.playingCard.Suit;
 
 public class Deck extends ArrayList<PlayingCard>{
 
@@ -58,72 +58,6 @@ public class Deck extends ArrayList<PlayingCard>{
             this.add(shuffleList.get(num));
             shuffleList.remove(num);
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
     }
     
     private int randInteger(int max,int min){
